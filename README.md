@@ -1,0 +1,319 @@
+# Travel Recommendation API
+
+REST API untuk sistem rekomendasi destinasi wisata berdasarkan preferensi pengguna.
+
+**Base URL**
+
+`http://127.0.0.1:8000`
+
+> Saat development, API berjalan pada localhost. Ketika API sudah di-deploy ke server, Base URL diganti dengan URL server tersebut.
+
+---
+
+## 1. Health Check
+
+Digunakan untuk memastikan API sedang berjalan.
+
+**Endpoint**
+
+`GET /health`
+
+**Response**
+
+```json
+{
+  "status": "success",
+  "message": "Travel Recommendation API is running"
+}
+```
+
+---
+
+# 2. Rekomendasi Kota
+
+Endpoint digunakan untuk mendapatkan daftar kota yang paling sesuai dengan preferensi pengguna.
+
+**Endpoint**
+
+`POST /recommend/cities`
+
+### Request
+
+```json
+{
+  "interests": ["culture", "history"],
+  "activity": "Exploration",
+  "travel_type": "Solo",
+  "top_n": 5
+}
+```
+
+### Parameter
+
+| Parameter     | Tipe    | Wajib | Keterangan                   |
+| ------------- | ------- | ----- | ---------------------------- |
+| `interests`   | array   | Ya    | Minat pengguna               |
+| `activity`    | string  | Ya    | Aktivitas perjalanan         |
+| `travel_type` | string  | Ya    | Jenis perjalanan             |
+| `top_n`       | integer | Tidak | Jumlah kota yang ditampilkan |
+
+### Nilai `interests`
+
+```text
+culinary
+culture
+nature
+shopping
+adventure
+history
+```
+
+Pengguna dapat memilih lebih dari satu minat.
+
+Contoh:
+
+```json
+["culture", "history"]
+```
+
+### Nilai `activity`
+
+```text
+Relaxing
+Exploration
+Adventure
+```
+
+### Nilai `travel_type`
+
+```text
+Solo
+Couple
+Family
+Friends
+```
+
+### Response
+
+```json
+{
+  "recommendations": [
+    {
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "score": 85.51
+    },
+    {
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "score": 80.3
+    },
+    {
+      "city": "Medan",
+      "country": "Indonesia",
+      "score": 80.28
+    },
+    {
+      "city": "Jakarta",
+      "country": "Indonesia",
+      "score": 80.02
+    },
+    {
+      "city": "Bangkok",
+      "country": "Thailand",
+      "score": 78.24
+    }
+  ]
+}
+```
+
+### Alur penggunaan
+
+Frontend mengirimkan preferensi pengguna ke endpoint `/recommend/cities`.
+
+API kemudian mengembalikan daftar kota berdasarkan skor rekomendasi dari yang tertinggi hingga terendah.
+
+Frontend dapat menampilkan hasil tersebut sebagai pilihan kota kepada pengguna.
+
+---
+
+# 3. Rekomendasi Destinasi
+
+Endpoint digunakan setelah pengguna memilih salah satu kota.
+
+**Endpoint**
+
+`POST /recommend/destinations`
+
+### Request
+
+```json
+{
+  "city": "Yogyakarta",
+  "interests": ["culture", "history"],
+  "activity": "Exploration",
+  "travel_type": "Solo",
+  "top_n": 5
+}
+```
+
+### Parameter
+
+| Parameter     | Tipe    | Wajib | Keterangan                        |
+| ------------- | ------- | ----- | --------------------------------- |
+| `city`        | string  | Ya    | Kota yang dipilih pengguna        |
+| `interests`   | array   | Ya    | Minat pengguna                    |
+| `activity`    | string  | Ya    | Aktivitas perjalanan              |
+| `travel_type` | string  | Ya    | Jenis perjalanan                  |
+| `top_n`       | integer | Tidak | Jumlah destinasi yang ditampilkan |
+
+### Response
+
+```json
+{
+  "city": "Yogyakarta",
+  "recommendations": [
+    {
+      "name": "Tourism Zone Malioboro",
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "rating": 4.7,
+      "review_count": 5489,
+      "score": 88.39
+    },
+    {
+      "name": "Titik Nol Kilometer Yogyakarta",
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "rating": 4.8,
+      "review_count": 58874,
+      "score": 84.63
+    },
+    {
+      "name": "Slasar Malioboro",
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "rating": 4.6,
+      "review_count": 548,
+      "score": 83.51
+    },
+    {
+      "name": "Keraton Ngayogyakarta Hadiningrat",
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "rating": 4.7,
+      "review_count": 39586,
+      "score": 82.9
+    },
+    {
+      "name": "Taman Sari Tourist Village",
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "rating": 4.6,
+      "review_count": 45936,
+      "score": 82.08
+    }
+  ]
+}
+```
+
+Jika kota tidak ditemukan, API mengembalikan:
+
+```json
+{
+  "city": "Nama Kota",
+  "recommendations": []
+}
+```
+
+---
+
+# 4. Alur Integrasi Frontend
+
+Frontend dapat menggunakan API dengan alur berikut:
+
+```text
+User memilih:
+- Interest
+- Activity
+- Travel Type
+        ↓
+POST /recommend/cities
+        ↓
+API mengembalikan Top 5 Kota
+        ↓
+User memilih salah satu kota
+        ↓
+POST /recommend/destinations
+        ↓
+API mengembalikan Top 5 Destinasi
+        ↓
+Frontend menampilkan rekomendasi
+```
+
+Contoh:
+
+```text
+User:
+Culture + History
+Exploration
+Solo
+
+        ↓
+
+Yogyakarta       85.51%
+Kuala Lumpur     80.30%
+Medan            80.28%
+Jakarta          80.02%
+Bangkok          78.24%
+
+        ↓
+
+User memilih Yogyakarta
+
+        ↓
+
+Tourism Zone Malioboro             88.39%
+Titik Nol Kilometer Yogyakarta     84.63%
+Slasar Malioboro                   83.51%
+Keraton Ngayogyakarta              82.90%
+Taman Sari Tourist Village         82.08%
+```
+
+---
+
+# 5. Catatan untuk Tim Web
+
+1. `score` merupakan skor rekomendasi dari model dan dapat digunakan untuk mengurutkan hasil.
+
+2. Hasil API sudah diurutkan dari skor tertinggi ke terendah.
+
+3. `top_n` dapat digunakan untuk menentukan jumlah hasil yang ingin ditampilkan.
+
+4. Nilai `interests`, `activity`, dan `travel_type` harus menggunakan pilihan yang telah ditentukan API.
+
+5. Untuk mendapatkan rekomendasi destinasi, frontend harus mengirimkan nama kota yang dipilih pengguna ke `/recommend/destinations`.
+
+6. Pada tahap development, API hanya dapat diakses melalui komputer yang menjalankan server menggunakan:
+
+`http://127.0.0.1:8000`
+
+7. Untuk integrasi dengan frontend pada komputer/server berbeda, API perlu menggunakan alamat host/server yang dapat diakses frontend.
+
+---
+
+# 6. Endpoint Summary
+
+| Method | Endpoint                  | Fungsi                                             |
+| ------ | ------------------------- | -------------------------------------------------- |
+| GET    | `/health`                 | Mengecek status API                                |
+| POST   | `/recommend/cities`       | Mendapatkan rekomendasi kota                       |
+| POST   | `/recommend/destinations` | Mendapatkan rekomendasi destinasi berdasarkan kota |
+
+## Swagger Documentation
+
+FastAPI juga menyediakan dokumentasi interaktif pada:
+
+`http://127.0.0.1:8000/docs`
+
+Tim web dapat menggunakan Swagger untuk mencoba setiap endpoint sebelum melakukan integrasi.
