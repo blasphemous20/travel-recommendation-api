@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, field_validator
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 
 Interest = Literal[
@@ -96,6 +96,10 @@ class DestinationBase(BaseModel):
         ...,
         min_length=1,
         description="Negara lokasi destinasi wisata (tidak boleh kosong)"
+    )
+    description: Optional[str] = Field(
+        default=None,
+        description="Deskripsi kota/destinasi untuk kebutuhan website"
     )
     address: str = Field(
         ...,
@@ -211,6 +215,10 @@ class DestinationResponse(BaseModel):
     review_count: int = Field(
         ...,
         description="Jumlah ulasan pengunjung"
+    )
+    description: Optional[str] = Field(
+        default=None,
+        description="Deskripsi kota/destinasi untuk kebutuhan website"
     )
 
 

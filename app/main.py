@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+import pandas as pd
 
 from app.model import (
     recommend_cities,
@@ -171,13 +172,16 @@ def recommend_city_endpoint(
     recommendations = []
 
     for _, row in result.iterrows():
-        recommendations.append({
+        rec_item = {
             "city": row["city"],
             "country": row["country"],
             "score": round(
                 row["city_score_percent"], 2
             )
-        })
+        }
+        if "description" in row and pd.notna(row["description"]):
+            rec_item["description"] = row["description"]
+        recommendations.append(rec_item)
 
     return {
         "recommendations": recommendations
@@ -209,7 +213,7 @@ def recommend_destination_endpoint(
     recommendations = []
 
     for _, row in result.iterrows():
-        recommendations.append({
+        rec_item = {
             "name": row["name"],
             "city": row["city"],
             "country": row["country"],
@@ -218,7 +222,10 @@ def recommend_destination_endpoint(
             "score": round(
                 row["score_percent"], 2
             )
-        })
+        }
+        if "description" in row and pd.notna(row["description"]):
+            rec_item["description"] = row["description"]
+        recommendations.append(rec_item)
 
     return {
         "city": request.city,

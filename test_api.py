@@ -131,7 +131,8 @@ assert "recommendations" in rec_city_res
 assert len(rec_city_res["recommendations"]) == 5
 print("OK: Top 5 Recommended Cities:")
 for r in rec_city_res["recommendations"]:
-    print(f"  - {r['city']}, {r['country']}: {r['score']}%")
+    assert "description" in r and len(r["description"]) > 10, f"Missing or short description for {r['city']}"
+    print(f"  - {r['city']}, {r['country']}: {r['score']}%\n    Deskripsi: {r['description'][:60]}...")
 
 print("\n=== 8. TEST POST /recommend/destinations ===")
 rec_dest_payload = {

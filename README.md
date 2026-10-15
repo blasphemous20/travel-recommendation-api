@@ -101,27 +101,14 @@ Friends
     {
       "city": "Yogyakarta",
       "country": "Indonesia",
-      "score": 85.51
+      "score": 85.51,
+      "description": "Yogyakarta adalah pusat kebudayaan dan sejarah Jawa yang memikat lewat kemegahan Keraton Ngayogyakarta Hadiningrat, keindahan pemandian kuno Taman Sari..."
     },
     {
       "city": "Kuala Lumpur",
       "country": "Malaysia",
-      "score": 80.3
-    },
-    {
-      "city": "Medan",
-      "country": "Indonesia",
-      "score": 80.28
-    },
-    {
-      "city": "Jakarta",
-      "country": "Indonesia",
-      "score": 80.02
-    },
-    {
-      "city": "Bangkok",
-      "country": "Thailand",
-      "score": 78.24
+      "score": 80.3,
+      "description": "Kuala Lumpur menggabungkan kemegahan gedung pencakar langit modern seperti Menara KL dan kawasan hijau KLCC Park dengan keindahan warisan budaya..."
     }
   ]
 }
@@ -179,7 +166,8 @@ Endpoint digunakan setelah pengguna memilih salah satu kota.
       "country": "Indonesia",
       "rating": 4.7,
       "review_count": 5489,
-      "score": 88.39
+      "score": 88.39,
+      "description": "Tourism Zone Malioboro merupakan kawasan sentra wisata belanja dan budaya legendaris di jantung Yogyakarta yang dipenuhi pedagang cinderamata, batik, kuliner khas, dan pertunjukan musisi jalanan."
     },
     {
       "name": "Titik Nol Kilometer Yogyakarta",
