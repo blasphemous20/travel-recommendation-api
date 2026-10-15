@@ -276,6 +276,40 @@ Fitur CRUD untuk mengelola data destinasi wisata secara dinamis. Perubahan data 
 }
 ```
 
+### 4.6 Update / Set URL Gambar Destinasi
+Digunakan oleh frontend untuk memperbarui atau mengisi foto destinasi secara spesifik tanpa perlu mengirim ulang data lainnya.
+- **Method & Endpoint**: `POST /destinations/{id}/image`
+- **Request Body (JSON)**:
+```json
+{
+  "image_url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1000"
+}
+```
+- **Response (200 OK)**: Mengembalikan data destinasi dengan `image_url` terbaru.
+
+### 4.7 Update / Set Deskripsi Destinasi
+Digunakan oleh frontend untuk memperbarui atau mengisi narasi deskripsi destinasi secara spesifik.
+- **Method & Endpoint**: `POST /destinations/{id}/description`
+- **Request Body (JSON)**:
+```json
+{
+  "description": "Taman Mini Indonesia Indah (TMII) merupakan kawasan taman rekreasi budaya Nusantara..."
+}
+```
+- **Response (200 OK)**: Mengembalikan data destinasi dengan `description` terbaru.
+
+### 4.8 Update / Set Gambar dan Deskripsi Sekaligus
+Digunakan oleh frontend jika ingin mengupdate foto dan deskripsi sekaligus dalam satu kali request.
+- **Method & Endpoint**: `POST /destinations/{id}/details`
+- **Request Body (JSON)**:
+```json
+{
+  "description": "Deskripsi baru...",
+  "image_url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1000"
+}
+```
+- **Response (200 OK)**: Mengembalikan data destinasi yang diperbarui.
+
 ---
 
 # 5. Alur Integrasi Frontend
@@ -317,16 +351,19 @@ Frontend menampilkan rekomendasi
 
 # 7. Endpoint Summary
 
-| Method | Endpoint              | Fungsi                                             |
-| ------ | --------------------- | -------------------------------------------------- |
-| GET    | `/health`             | Mengecek status API                                |
-| GET    | `/destinations`       | Mengambil seluruh daftar destinasi wisata          |
-| GET    | `/destinations/{id}`  | Mengambil detail destinasi berdasarkan ID          |
-| POST   | `/destinations`       | Menambahkan destinasi baru (ID otomatis dibuat)    |
-| PUT    | `/destinations/{id}`  | Memperbarui data destinasi berdasarkan ID          |
-| DELETE | `/destinations/{id}`  | Menghapus destinasi berdasarkan ID                 |
-| POST   | `/recommend/cities`   | Mendapatkan rekomendasi kota                       |
-| POST   | `/recommend/destinations` | Mendapatkan rekomendasi destinasi berdasarkan kota |
+| Method | Endpoint                          | Fungsi                                                    |
+| ------ | --------------------------------- | --------------------------------------------------------- |
+| GET    | `/health`                         | Mengecek status API                                       |
+| GET    | `/destinations`                   | Mengambil seluruh daftar destinasi wisata                 |
+| GET    | `/destinations/{id}`              | Mengambil detail destinasi berdasarkan ID                 |
+| POST   | `/destinations`                   | Menambahkan destinasi baru (ID otomatis dibuat)           |
+| PUT    | `/destinations/{id}`              | Memperbarui seluruh data destinasi berdasarkan ID         |
+| DELETE | `/destinations/{id}`              | Menghapus destinasi berdasarkan ID                        |
+| POST   | `/destinations/{id}/image`        | Memperbarui/set URL gambar destinasi                      |
+| POST   | `/destinations/{id}/description`  | Memperbarui/set deskripsi tempat wisata                   |
+| POST   | `/destinations/{id}/details`      | Memperbarui/set gambar & deskripsi destinasi sekaligus    |
+| POST   | `/recommend/cities`               | Mendapatkan rekomendasi kota                              |
+| POST   | `/recommend/destinations`         | Mendapatkan rekomendasi destinasi berdasarkan kota        |
 
 ## Swagger Documentation
 

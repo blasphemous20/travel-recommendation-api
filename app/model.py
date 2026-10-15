@@ -334,6 +334,96 @@ def update_destination(destination_id: int, data: dict) -> Optional[Dict[str, An
         }
 
 
+def update_destination_image(destination_id: int, image_url: str) -> Optional[Dict[str, Any]]:
+    """
+    Memperbarui atau menetapkan URL gambar destinasi wisata berdasarkan ID.
+    Menyimpan perubahan langsung ke CSV.
+    """
+    with _data_lock:
+        global df_destinations
+        matches = df_destinations.index[df_destinations["id"] == destination_id].tolist()
+        if not matches:
+            return None
+        idx = matches[0]
+
+        df = df_destinations.copy()
+        df.loc[idx, "image_url"] = image_url
+        _save_and_sync(df)
+
+        row = df.loc[idx]
+        return {
+            "id": destination_id,
+            "name": str(row["name"]),
+            "city": str(row["city"]),
+            "country": str(row["country"]),
+            "rating": float(row["rating"]),
+            "review_count": int(row["review_count"]),
+            "description": str(row["description"]) if "description" in df.columns and pd.notna(row["description"]) else "",
+            "image_url": str(row["image_url"]),
+        }
+
+
+def update_destination_description(destination_id: int, description: str) -> Optional[Dict[str, Any]]:
+    """
+    Memperbarui atau menetapkan deskripsi tempat wisata berdasarkan ID.
+    Menyimpan perubahan langsung ke CSV.
+    """
+    with _data_lock:
+        global df_destinations
+        matches = df_destinations.index[df_destinations["id"] == destination_id].tolist()
+        if not matches:
+            return None
+        idx = matches[0]
+
+        df = df_destinations.copy()
+        df.loc[idx, "description"] = description
+        _save_and_sync(df)
+
+        row = df.loc[idx]
+        return {
+            "id": destination_id,
+            "name": str(row["name"]),
+            "city": str(row["city"]),
+            "country": str(row["country"]),
+            "rating": float(row["rating"]),
+            "review_count": int(row["review_count"]),
+            "description": str(row["description"]),
+            "image_url": str(row["image_url"]) if "image_url" in df.columns and pd.notna(row["image_url"]) else "",
+        }
+
+
+def update_destination_details(destination_id: int, description: Optional[str] = None, image_url: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """
+    Memperbarui gambar dan/atau deskripsi destinasi wisata sekaligus berdasarkan ID.
+    Menyimpan perubahan langsung ke CSV.
+    """
+    with _data_lock:
+        global df_destinations
+        matches = df_destinations.index[df_destinations["id"] == destination_id].tolist()
+        if not matches:
+            return None
+        idx = matches[0]
+
+        df = df_destinations.copy()
+        if description is not None:
+            df.loc[idx, "description"] = description
+        if image_url is not None:
+            df.loc[idx, "image_url"] = image_url
+        _save_and_sync(df)
+
+        row = df.loc[idx]
+        return {
+            "id": destination_id,
+            "name": str(row["name"]),
+            "city": str(row["city"]),
+            "country": str(row["country"]),
+            "rating": float(row["rating"]),
+            "review_count": int(row["review_count"]),
+            "description": str(row["description"]) if "description" in df.columns and pd.notna(row["description"]) else "",
+            "image_url": str(row["image_url"]) if "image_url" in df.columns and pd.notna(row["image_url"]) else "",
+        }
+
+
 def delete_destination(destination_id: int) -> bool:
     """
     Menghapus destinasi berdasarkan ID.

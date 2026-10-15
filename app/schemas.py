@@ -242,3 +242,61 @@ class MessageResponse(BaseModel):
         ...,
         description="Pesan status operasi"
     )
+
+
+class DestinationImageUpdate(BaseModel):
+    image_url: str = Field(
+        ...,
+        min_length=5,
+        description="URL gambar destinasi wisata (contoh: https://images.unsplash.com/...)"
+    )
+
+    @field_validator("image_url")
+    @classmethod
+    def validate_image_url(cls, v: str) -> str:
+        v = v.strip()
+        if not (v.startswith("http://") or v.startswith("https://")):
+            raise ValueError("image_url harus diawali dengan http:// atau https://")
+        return v
+
+
+class DestinationDescriptionUpdate(BaseModel):
+    description: str = Field(
+        ...,
+        min_length=1,
+        description="Deskripsi destinasi wisata"
+    )
+
+    @field_validator("description")
+    @classmethod
+    def validate_description(cls, v: str) -> str:
+        if not v or not v.strip():
+            raise ValueError("description tidak boleh kosong")
+        return v.strip()
+
+
+class DestinationDetailsUpdate(BaseModel):
+    description: Optional[str] = Field(
+        default=None,
+        description="Deskripsi destinasi wisata"
+    )
+    image_url: Optional[str] = Field(
+        default=None,
+        description="URL gambar destinasi wisata"
+    )
+
+    @field_validator("image_url")
+    @classmethod
+    def validate_image_url(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None:
+            v = v.strip()
+            if v and not (v.startswith("http://") or v.startswith("https://")):
+                raise ValueError("image_url harus diawali dengan http:// atau https://")
+        return v
+
+    @field_validator("description")
+    @classmethod
+    def validate_description(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None and not v.strip():
+            raise ValueError("description tidak boleh hanya spasi kosong")
+        return v.strip() if v is not None else None

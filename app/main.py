@@ -11,6 +11,9 @@ from app.model import (
     get_destination_by_id,
     create_destination,
     update_destination,
+    update_destination_image,
+    update_destination_description,
+    update_destination_details,
     delete_destination,
 )
 
@@ -21,6 +24,9 @@ from app.schemas import (
     DestinationUpdate,
     DestinationResponse,
     DestinationListResponse,
+    DestinationImageUpdate,
+    DestinationDescriptionUpdate,
+    DestinationDetailsUpdate,
     MessageResponse,
 )
 
@@ -148,6 +154,62 @@ def delete_destination_endpoint(id: int):
     return {
         "message": "Destination deleted successfully"
     }
+
+
+@app.post(
+    "/destinations/{id}/image",
+    response_model=DestinationResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Update/Set URL gambar destinasi",
+    description="Memperbarui atau menetapkan URL gambar destinasi wisata berdasarkan ID dan menyimpannya ke CSV."
+)
+def update_destination_image_endpoint(id: int, request: DestinationImageUpdate):
+    updated = update_destination_image(id, request.image_url)
+    if not updated:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Destinasi dengan ID {id} tidak ditemukan"
+        )
+    return updated
+
+
+@app.post(
+    "/destinations/{id}/description",
+    response_model=DestinationResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Update/Set deskripsi destinasi",
+    description="Memperbarui atau menetapkan deskripsi tempat wisata berdasarkan ID dan menyimpannya ke CSV."
+)
+def update_destination_description_endpoint(id: int, request: DestinationDescriptionUpdate):
+    updated = update_destination_description(id, request.description)
+    if not updated:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Destinasi dengan ID {id} tidak ditemukan"
+        )
+    return updated
+
+
+@app.post(
+    "/destinations/{id}/details",
+    response_model=DestinationResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Update/Set gambar dan deskripsi destinasi",
+    description="Memperbarui gambar dan/atau deskripsi destinasi wisata sekaligus berdasarkan ID dan menyimpannya ke CSV."
+)
+def update_destination_details_endpoint(id: int, request: DestinationDetailsUpdate):
+    if request.description is None and request.image_url is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Setidaknya salah satu dari 'description' atau 'image_url' harus diisi"
+        )
+    updated = update_destination_details(id, description=request.description, image_url=request.image_url)
+    if not updated:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Destinasi dengan ID {id} tidak ditemukan"
+        )
+    return updated
 
 
 # ==========================================

@@ -108,6 +108,35 @@ csv_df = pd.read_csv("app/data/destinations_clean.csv")
 assert csv_df[csv_df["id"] == created_id].iloc[0]["name"] == "Kura Kura Ocean Park Renamed"
 print("CSV update persistence verified!")
 
+print(f"\n=== 5b. TEST POST /destinations/{created_id}/image ===")
+new_image_url = "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1000"
+status, img_res = make_request("POST", f"/destinations/{created_id}/image", {"image_url": new_image_url})
+assert status == 200, f"Expected 200, got {status}: {img_res}"
+assert img_res["image_url"] == new_image_url
+# Verify in CSV
+csv_df = pd.read_csv("app/data/destinations_clean.csv")
+assert csv_df[csv_df["id"] == created_id].iloc[0]["image_url"] == new_image_url
+print(f"OK (Status {status}): image_url updated and persisted to CSV!")
+
+print(f"\n=== 5c. TEST POST /destinations/{created_id}/description ===")
+new_desc = "Kura Kura Ocean Park adalah wahana edukasi kura-kura raksasa di pesisir pantai Kartini Jepara."
+status, desc_res = make_request("POST", f"/destinations/{created_id}/description", {"description": new_desc})
+assert status == 200, f"Expected 200, got {status}: {desc_res}"
+assert desc_res["description"] == new_desc
+# Verify in CSV
+csv_df = pd.read_csv("app/data/destinations_clean.csv")
+assert csv_df[csv_df["id"] == created_id].iloc[0]["description"] == new_desc
+print(f"OK (Status {status}): description updated and persisted to CSV!")
+
+print(f"\n=== 5d. TEST POST /destinations/{created_id}/details ===")
+detail_desc = "Deskripsi baru gabungan via details endpoint."
+detail_img = "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=900"
+status, det_res = make_request("POST", f"/destinations/{created_id}/details", {"description": detail_desc, "image_url": detail_img})
+assert status == 200, f"Expected 200, got {status}: {det_res}"
+assert det_res["description"] == detail_desc
+assert det_res["image_url"] == detail_img
+print(f"OK (Status {status}): Combined details updated successfully!")
+
 print(f"\n=== 6. TEST DELETE /destinations/{created_id} ===")
 status, delete_res = make_request("DELETE", f"/destinations/{created_id}")
 assert status == 200, f"Expected 200, got {status}: {delete_res}"
@@ -207,6 +236,26 @@ assert r1["id"] != r2["id"], f"Duplicate ID detected: {r1['id']} and {r2['id']}"
 print(f"OK: Consecutive IDs created: {r1['id']} and {r2['id']}. Cleaning up test items...")
 make_request("DELETE", f"/destinations/{r1['id']}")
 make_request("DELETE", f"/destinations/{r2['id']}")
+
+print("\n9i. Image update ID tidak ditemukan (POST /destinations/9999/image):")
+status, res = make_request("POST", "/destinations/9999/image", {"image_url": "https://example.com/test.jpg"})
+assert status == 404, f"Expected 404, got {status}"
+print(f"OK: Status {status}, detail: {res['detail']}")
+
+print("\n9j. Description update ID tidak ditemukan (POST /destinations/9999/description):")
+status, res = make_request("POST", "/destinations/9999/description", {"description": "Test description"})
+assert status == 404, f"Expected 404, got {status}"
+print(f"OK: Status {status}, detail: {res['detail']}")
+
+print("\n9k. Invalid image URL (no http/https):")
+status, res = make_request("POST", "/destinations/1/image", {"image_url": "ftp://example.com/pic.jpg"})
+assert status == 400, f"Expected 400, got {status}"
+print(f"OK: Status {status}, error handled properly: {res['message']}")
+
+print("\n9l. Empty description update:")
+status, res = make_request("POST", "/destinations/1/description", {"description": "   "})
+assert status == 400, f"Expected 400, got {status}"
+print(f"OK: Status {status}, error handled properly: {res['message']}")
 
 server.should_exit = True
 print("\n>>> ALL TESTS PASSED SUCCESSFULLY! <<<")
