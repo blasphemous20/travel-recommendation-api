@@ -46,6 +46,7 @@ status, res = make_request("GET", "/destinations")
 assert status == 200, f"Expected 200, got {status}"
 assert "destinations" in res
 dest_count_initial = len(res["destinations"])
+assert "image_url" in res["destinations"][0] and res["destinations"][0]["image_url"].startswith("http")
 print(f"OK: Found {dest_count_initial} destinations. Sample first item:")
 print(json.dumps(res["destinations"][0], indent=2))
 
@@ -54,6 +55,7 @@ status, res = make_request("GET", "/destinations/1")
 assert status == 200, f"Expected 200, got {status}"
 assert res["id"] == 1
 assert res["name"] == "Taman Mini Indonesia Indah"
+assert "image_url" in res and res["image_url"].startswith("http")
 print("OK:", json.dumps(res, indent=2))
 
 print("\n=== 4. TEST POST /destinations ===")
@@ -132,7 +134,8 @@ assert len(rec_city_res["recommendations"]) == 5
 print("OK: Top 5 Recommended Cities:")
 for r in rec_city_res["recommendations"]:
     assert "description" in r and len(r["description"]) > 10, f"Missing or short description for {r['city']}"
-    print(f"  - {r['city']}, {r['country']}: {r['score']}%\n    Deskripsi: {r['description'][:60]}...")
+    assert "image_url" in r and r["image_url"].startswith("http"), f"Missing or invalid image_url for {r['city']}"
+    print(f"  - {r['city']}, {r['country']}: {r['score']}%\n    Foto: {r['image_url']}\n    Deskripsi: {r['description'][:60]}...")
 
 print("\n=== 8. TEST POST /recommend/destinations ===")
 rec_dest_payload = {
@@ -148,7 +151,8 @@ assert rec_dest_res["city"] == "Yogyakarta"
 assert len(rec_dest_res["recommendations"]) == 5
 print("OK: Top 5 Destinations in Yogyakarta:")
 for r in rec_dest_res["recommendations"]:
-    print(f"  - {r['name']}: {r['score']}%")
+    assert "image_url" in r and r["image_url"].startswith("http"), f"Missing or invalid image_url for {r['name']}"
+    print(f"  - {r['name']}: {r['score']}% (Foto: {r['image_url']})")
 
 print("\n=== 9. EDGE CASES ===")
 

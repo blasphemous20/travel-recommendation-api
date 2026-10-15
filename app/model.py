@@ -83,6 +83,53 @@ CITY_DESCRIPTIONS = {
     )
 }
 
+CITY_IMAGES = {
+    "Jakarta": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=800&auto=format&fit=crop&q=80",
+    "Bandung": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=800&auto=format&fit=crop&q=80",
+    "Yogyakarta": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?w=800&auto=format&fit=crop&q=80",
+    "Surabaya": "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&auto=format&fit=crop&q=80",
+    "Medan": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=800&auto=format&fit=crop&q=80",
+    "Singapore": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&auto=format&fit=crop&q=80",
+    "Kuala Lumpur": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&auto=format&fit=crop&q=80",
+    "Penang": "https://images.unsplash.com/photo-1571210862729-78a52d3779a2?w=800&auto=format&fit=crop&q=80",
+    "Bangkok": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&auto=format&fit=crop&q=80",
+    "Manila": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800&auto=format&fit=crop&q=80",
+    "Seoul": "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&auto=format&fit=crop&q=80"
+}
+
+
+def get_destination_image(data_or_row: dict) -> str:
+    """Mengembalikan URL foto placeholder Unsplash berkualitas tinggi sesuai jenis destinasi."""
+    name = str(data_or_row.get("name", "")).lower()
+    types = str(data_or_row.get("types", "")).lower()
+    text = name + " " + types
+
+    if any(k in text for k in ["aquarium", "ocean park", "sea life", "water"]):
+        return "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["taman mini", "ancol", "lotte world", "dino", "theme park", "amusement"]):
+        return "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["bird", "zoo", "safari", "wildlife", "butterfly"]):
+        return "https://images.unsplash.com/photo-1555169062-013468b47731?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["pantai", "beach", "quay", "jetty", "jetties", "harbor"]):
+        return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["masjid", "mosque"]):
+        return "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["temple", "vihara", "kuil", "wat", "church", "gereja", "katedral", "shrine"]):
+        return "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["palace", "istana", "keraton", "throne"]):
+        return "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["menara", "tower", "skywalk", "skypark", "flyer", "supertree", "helix", "deck"]):
+        return "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["mural", "street art", "art & culture", "bloc", "cyber", "village", "hanok"]):
+        return "https://images.unsplash.com/photo-1561055657-b9e0bf0fa360?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["malioboro", "myeongdong", "market", "shopping", "chinatown", "slasar", "braga"]):
+        return "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["tebing", "hutan", "forest", "botanic", "garden", "park", "taman", "kawah", "flower dome"]):
+        return "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&auto=format&fit=crop&q=80"
+    if any(k in text for k in ["museum", "monumen", "monument", "statue", "arca", "mansion", "benteng", "fort", "kapal selam"]):
+        return "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&auto=format&fit=crop&q=80"
+    return CITY_IMAGES.get(data_or_row.get("city"), "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80")
+
 
 def recalculate_features(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -149,6 +196,8 @@ def get_all_destinations() -> List[Dict[str, Any]]:
             }
             if "description" in row and pd.notna(row["description"]):
                 item["description"] = str(row["description"])
+            if "image_url" in row and pd.notna(row["image_url"]):
+                item["image_url"] = str(row["image_url"])
             records.append(item)
         return records
 
@@ -170,6 +219,8 @@ def get_destination_by_id(destination_id: int) -> Optional[Dict[str, Any]]:
         }
         if "description" in row and pd.notna(row["description"]):
             item["description"] = str(row["description"])
+        if "image_url" in row and pd.notna(row["image_url"]):
+            item["image_url"] = str(row["image_url"])
         return item
 
 
@@ -187,6 +238,7 @@ def create_destination(data: dict) -> Dict[str, Any]:
             new_id = int(df_destinations["id"].max()) + 1
 
         desc = data.get("description") or CITY_DESCRIPTIONS.get(data["city"], "")
+        img_url = data.get("image_url") or get_destination_image(data)
 
         new_row = {
             "id": new_id,
@@ -194,6 +246,7 @@ def create_destination(data: dict) -> Dict[str, Any]:
             "city": data["city"],
             "country": data["country"],
             "description": desc,
+            "image_url": img_url,
             "address": data["address"],
             "rating": float(data["rating"]),
             "review_count": int(data["review_count"]),
@@ -221,6 +274,7 @@ def create_destination(data: dict) -> Dict[str, Any]:
             "rating": new_row["rating"],
             "review_count": new_row["review_count"],
             "description": new_row["description"],
+            "image_url": new_row["image_url"],
         }
 
 
@@ -245,6 +299,12 @@ def update_destination(destination_id: int, data: dict) -> Optional[Dict[str, An
             df.loc[idx, "description"] = data["description"]
         elif "description" not in df.columns or pd.isna(df.loc[idx, "description"]):
             df.loc[idx, "description"] = CITY_DESCRIPTIONS.get(data["city"], "")
+
+        if "image_url" in data and data["image_url"]:
+            df.loc[idx, "image_url"] = data["image_url"]
+        elif "image_url" not in df.columns or pd.isna(df.loc[idx, "image_url"]):
+            df.loc[idx, "image_url"] = get_destination_image(data)
+
         df.loc[idx, "address"] = data["address"]
         df.loc[idx, "rating"] = float(data["rating"])
         df.loc[idx, "review_count"] = int(data["review_count"])
@@ -270,6 +330,7 @@ def update_destination(destination_id: int, data: dict) -> Optional[Dict[str, An
             "rating": float(data["rating"]),
             "review_count": int(data["review_count"]),
             "description": str(df.loc[idx, "description"]) if "description" in df.columns and pd.notna(df.loc[idx, "description"]) else "",
+            "image_url": str(df.loc[idx, "image_url"]) if "image_url" in df.columns and pd.notna(df.loc[idx, "image_url"]) else "",
         }
 
 
@@ -423,6 +484,7 @@ def recommend_cities(
     )
 
     city_scores["description"] = city_scores["city"].map(CITY_DESCRIPTIONS).fillna("")
+    city_scores["image_url"] = city_scores["city"].map(CITY_IMAGES).fillna("")
 
     # Ranking kota
     city_scores = city_scores.sort_values(
@@ -515,5 +577,7 @@ def recommend_destinations_by_city(
     ]
     if "description" in result.columns:
         cols.append("description")
+    if "image_url" in result.columns:
+        cols.append("image_url")
 
     return result[cols]

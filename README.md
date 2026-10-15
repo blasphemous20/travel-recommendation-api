@@ -102,13 +102,15 @@ Friends
       "city": "Yogyakarta",
       "country": "Indonesia",
       "score": 85.51,
-      "description": "Yogyakarta adalah pusat kebudayaan dan sejarah Jawa yang memikat lewat kemegahan Keraton Ngayogyakarta Hadiningrat, keindahan pemandian kuno Taman Sari..."
+      "description": "Yogyakarta adalah pusat kebudayaan dan sejarah Jawa yang memikat lewat kemegahan Keraton Ngayogyakarta Hadiningrat, keindahan pemandian kuno Taman Sari...",
+      "image_url": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?w=800&auto=format&fit=crop&q=80"
     },
     {
       "city": "Kuala Lumpur",
       "country": "Malaysia",
       "score": 80.3,
-      "description": "Kuala Lumpur menggabungkan kemegahan gedung pencakar langit modern seperti Menara KL dan kawasan hijau KLCC Park dengan keindahan warisan budaya..."
+      "description": "Kuala Lumpur menggabungkan kemegahan gedung pencakar langit modern seperti Menara KL dan kawasan hijau KLCC Park dengan keindahan warisan budaya...",
+      "image_url": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&auto=format&fit=crop&q=80"
     }
   ]
 }
@@ -167,7 +169,8 @@ Endpoint digunakan setelah pengguna memilih salah satu kota.
       "rating": 4.7,
       "review_count": 5489,
       "score": 88.39,
-      "description": "Tourism Zone Malioboro merupakan kawasan sentra wisata belanja dan budaya legendaris di jantung Yogyakarta yang dipenuhi pedagang cinderamata, batik, kuliner khas, dan pertunjukan musisi jalanan."
+      "description": "Tourism Zone Malioboro merupakan kawasan sentra wisata belanja dan budaya legendaris di jantung Yogyakarta yang dipenuhi pedagang cinderamata, batik, kuliner khas, dan pertunjukan musisi jalanan.",
+      "image_url": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&auto=format&fit=crop&q=80"
     },
     {
       "name": "Titik Nol Kilometer Yogyakarta",
@@ -175,31 +178,9 @@ Endpoint digunakan setelah pengguna memilih salah satu kota.
       "country": "Indonesia",
       "rating": 4.8,
       "review_count": 58874,
-      "score": 84.63
-    },
-    {
-      "name": "Slasar Malioboro",
-      "city": "Yogyakarta",
-      "country": "Indonesia",
-      "rating": 4.6,
-      "review_count": 548,
-      "score": 83.51
-    },
-    {
-      "name": "Keraton Ngayogyakarta Hadiningrat",
-      "city": "Yogyakarta",
-      "country": "Indonesia",
-      "rating": 4.7,
-      "review_count": 39586,
-      "score": 82.9
-    },
-    {
-      "name": "Taman Sari Tourist Village",
-      "city": "Yogyakarta",
-      "country": "Indonesia",
-      "rating": 4.6,
-      "review_count": 45936,
-      "score": 82.08
+      "score": 84.63,
+      "description": "Titik Nol Kilometer Yogyakarta merupakan ruang terbuka publik bersejarah di persimpangan jalan utama Yogyakarta...",
+      "image_url": "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?w=800&auto=format&fit=crop&q=80"
     }
   ]
 }
@@ -232,7 +213,9 @@ Fitur CRUD untuk mengelola data destinasi wisata secara dinamis. Perubahan data 
       "city": "Jakarta",
       "country": "Indonesia",
       "rating": 4.6,
-      "review_count": 174961
+      "review_count": 174961,
+      "description": "Taman Mini Indonesia Indah (TMII) merupakan kawasan taman rekreasi bertema budaya Indonesia...",
+      "image_url": "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=800&auto=format&fit=crop&q=80"
     }
   ]
 }
@@ -248,7 +231,9 @@ Fitur CRUD untuk mengelola data destinasi wisata secara dinamis. Perubahan data 
   "city": "Jakarta",
   "country": "Indonesia",
   "rating": 4.6,
-  "review_count": 174961
+  "review_count": 174961,
+  "description": "Taman Mini Indonesia Indah (TMII) merupakan kawasan taman rekreasi bertema budaya Indonesia...",
+  "image_url": "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=800&auto=format&fit=crop&q=80"
 }
 ```
 

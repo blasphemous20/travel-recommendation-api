@@ -181,6 +181,8 @@ def recommend_city_endpoint(
         }
         if "description" in row and pd.notna(row["description"]):
             rec_item["description"] = row["description"]
+        if "image_url" in row and pd.notna(row["image_url"]):
+            rec_item["image_url"] = row["image_url"]
         recommendations.append(rec_item)
 
     return {
@@ -225,6 +227,8 @@ def recommend_destination_endpoint(
         }
         if "description" in row and pd.notna(row["description"]):
             rec_item["description"] = row["description"]
+        if "image_url" in row and pd.notna(row["image_url"]):
+            rec_item["image_url"] = row["image_url"]
         recommendations.append(rec_item)
 
     return {

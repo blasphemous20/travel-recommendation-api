@@ -101,6 +101,10 @@ class DestinationBase(BaseModel):
         default=None,
         description="Deskripsi kota/destinasi untuk kebutuhan website"
     )
+    image_url: Optional[str] = Field(
+        default=None,
+        description="URL gambar placeholder atau foto destinasi (Unsplash)"
+    )
     address: str = Field(
         ...,
         description="Alamat lengkap destinasi wisata"
@@ -219,6 +223,10 @@ class DestinationResponse(BaseModel):
     description: Optional[str] = Field(
         default=None,
         description="Deskripsi kota/destinasi untuk kebutuhan website"
+    )
+    image_url: Optional[str] = Field(
+        default=None,
+        description="URL gambar placeholder atau foto destinasi (Unsplash)"
     )
 
 
