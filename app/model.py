@@ -80,6 +80,28 @@ CITY_DESCRIPTIONS = {
         "Seoul menawarkan harmoni sempurna antara kemegahan istana Dinasti Joseon di Changdeokgung dan lorong "
         "tradisional Bukchon Hanok Village, dengan pesona gemerlap kota modern di N Seoul Tower, surga belanja "
         "Myeongdong, serta keseruan taman hiburan Lotte World."
+    ),
+    "Bali": (
+        "Bali adalah destinasi pulau dewata kelas dunia yang tersohor dengan keindahan pura sakral Tanah Lot dan "
+        "Uluwatu, sawah berundak Tegallalang, keasrian hutan monyet Ubud, serta pesona pantai tropis yang eksotis."
+    ),
+    "Tokyo": (
+        "Tokyo menyuguhkan perpaduan menakjubkan antara tradisi kuno di Kuil Senso-ji dan Meiji Jingu dengan kemegahan "
+        "futuristik Tokyo Skytree, gemerlap Shibuya Crossing, hingga surga belanja dan pop-culture di Akihabara."
+    ),
+    "Kyoto": (
+        "Kyoto merupakan jantung kebudayaan dan warisan sejarah Jepang yang kaya akan ribuan gerbang torii di Fushimi "
+        "Inari Taisha, keindahan paviliun emas Kinkaku-ji, rimbunnya hutan bambu Arashiyama, serta pesona distrik Gion."
+    ),
+    "Osaka": (
+        "Osaka merupakan kota metropolitan terbesar di wilayah Kansai yang dikenal sebagai ibukota kuliner Jepang dengan "
+        "semarak kanal Dotonbori, kemegahan kastil bersejarah Osakajo, wahana dunia Universal Studios Japan, hingga "
+        "akuarium raksasa Kaiyukan."
+    ),
+    "Dubai": (
+        "Dubai merupakan pusat wisata halal dan metropolitan modern terkemuka di Asia Barat yang menyuguhkan "
+        "kemegahan arsitektur islami di Jumeirah Mosque dan Dubai Quranic Park, cagar budaya Al Fahidi, kemewahan "
+        "Burj Khalifa, hingga petualangan safari gurun pasir."
     )
 }
 
@@ -94,7 +116,12 @@ CITY_IMAGES = {
     "Penang": "https://images.unsplash.com/photo-1571210862729-78a52d3779a2?w=800&auto=format&fit=crop&q=80",
     "Bangkok": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&auto=format&fit=crop&q=80",
     "Manila": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800&auto=format&fit=crop&q=80",
-    "Seoul": "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&auto=format&fit=crop&q=80"
+    "Seoul": "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&auto=format&fit=crop&q=80",
+    "Bali": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80",
+    "Tokyo": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80",
+    "Kyoto": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80",
+    "Osaka": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=800&auto=format&fit=crop&q=80",
+    "Dubai": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80"
 }
 
 

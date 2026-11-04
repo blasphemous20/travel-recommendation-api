@@ -80,7 +80,7 @@ new_dest_payload = {
 status, created_res = make_request("POST", "/destinations", new_dest_payload)
 assert status == 201, f"Expected 201, got {status}: {created_res}"
 created_id = created_res["id"]
-assert created_id == 111, f"Expected ID 111, got {created_id}"
+assert created_id == dest_count_initial + 1, f"Expected ID {dest_count_initial + 1}, got {created_id}"
 assert created_res["name"] == "Kura Kura Ocean Park"
 print(f"OK (Status {status}): Created destination ID {created_id}:")
 print(json.dumps(created_res, indent=2))
