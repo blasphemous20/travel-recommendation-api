@@ -46,8 +46,9 @@ status, res = make_request("GET", "/destinations")
 assert status == 200, f"Expected 200, got {status}"
 assert "destinations" in res
 dest_count_initial = len(res["destinations"])
+dest_max_id_initial = max(d["id"] for d in res["destinations"])
 assert "image_url" in res["destinations"][0] and res["destinations"][0]["image_url"].startswith("http")
-print(f"OK: Found {dest_count_initial} destinations. Sample first item:")
+print(f"OK: Found {dest_count_initial} destinations (Max ID: {dest_max_id_initial}). Sample first item:")
 print(json.dumps(res["destinations"][0], indent=2))
 
 print("\n=== 3. TEST GET /destinations/1 ===")
@@ -80,7 +81,7 @@ new_dest_payload = {
 status, created_res = make_request("POST", "/destinations", new_dest_payload)
 assert status == 201, f"Expected 201, got {status}: {created_res}"
 created_id = created_res["id"]
-assert created_id == dest_count_initial + 1, f"Expected ID {dest_count_initial + 1}, got {created_id}"
+assert created_id == dest_max_id_initial + 1, f"Expected ID {dest_max_id_initial + 1}, got {created_id}"
 assert created_res["name"] == "Kura Kura Ocean Park"
 print(f"OK (Status {status}): Created destination ID {created_id}:")
 print(json.dumps(created_res, indent=2))
