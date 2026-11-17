@@ -38,13 +38,13 @@ CITY_DESCRIPTIONS = {
     ),
     "Yogyakarta": (
         "Yogyakarta adalah pusat kebudayaan dan sejarah Jawa yang memikat lewat kemegahan Keraton Ngayogyakarta "
-        "Hadiningrat, keindahan pemandian kuno Taman Sari, sentra dakwah legendaris Masjid Jogokariyan, keasrian Hutan "
-        "Pinus Mangunan, tebing seni Breksi, museum Benteng Vredeburg, serta ikonik belanja di kawasan Malioboro."
+        "Hadiningrat, Masjid Gedhe Kauman, keindahan pemandian kuno Taman Sari, sentra dakwah legendaris Masjid Jogokariyan, "
+        "keasrian Hutan Pinus Mangunan, tebing seni Breksi, museum Benteng Vredeburg, serta ikonik belanja di kawasan Malioboro."
     ),
     "Surabaya": (
         "Surabaya menawarkan wisata sejarah kepahlawanan melalui Tugu Pahlawan dan Monumen Kapal Selam, keanggunan "
-        "arsitektur islami di Masjid Nasional Al-Akbar dan Masjid Muhammad Cheng Hoo, wisata religi Makam Sunan Ampel & "
-        "Kampung Arab, keasrian Taman Harmoni Hutan Bambu Keputih, serta panorama maritim di Surabaya North Quay."
+        "arsitektur islami di Masjid Nasional Al-Akbar, Masjid Muhammad Cheng Hoo, masjid cagar budaya Kemayoran, wisata "
+        "religi Sunan Ampel & Kampung Arab, keasrian Hutan Bambu Keputih, serta panorama maritim di Surabaya North Quay."
     ),
     "Medan": (
         "Medan adalah kota multikultural yang kaya akan peninggalan bersejarah seperti Istana Maimun, Masjid Raya "
@@ -54,12 +54,12 @@ CITY_DESCRIPTIONS = {
     "Singapore": (
         "Singapore memukau sebagai destinasi kelas dunia dengan keajaiban arsitektur futuristik di Gardens by the Bay, "
         "Jewel Changi Airport, dan SkyPark, cagar budaya bersejarah Masjid Hajjah Fatimah & Masjid Sultan Kampong Gelam, "
-        "keasrian Singapore Botanic Gardens & Jurong Lake Gardens, panorama Merlion Park, hingga petualangan Night Safari."
+        "keasrian Singapore Botanic Gardens, Jurong Lake Gardens, suaka bakau Sungei Buloh, hingga petualangan Night Safari."
     ),
     "Kuala Lumpur": (
         "Kuala Lumpur menggabungkan kemegahan gedung pencakar langit modern seperti Menara KL dan KLCC Park dengan "
-        "keindahan arsitektur islami di Masjid Negara, Masjid Wilayah Persekutuan, dan Masjid Jamek, sejarah Dataran Merdeka, "
-        "surga kuliner Bukit Bintang, serta rekreasi alam asri Taman Tasik Titiwangsa dan Taman Rama-Rama KL."
+        "keindahan arsitektur islami di Masjid Negara, Masjid Wilayah Persekutuan, Masjid Jamek, dan Masjid Asy-Syakirin "
+        "KLCC, sejarah Dataran Merdeka, surga kuliner Bukit Bintang, serta rekreasi alam asri Taman Tasik Titiwangsa."
     ),
     "Penang": (
         "Penang adalah pulau warisan dunia UNESCO yang terkenal dengan seni mural George Town, panorama Penang Hill "
@@ -68,18 +68,18 @@ CITY_DESCRIPTIONS = {
     ),
     "Bangkok": (
         "Bangkok menghadirkan perpaduan spektakuler antara keagungan istana The Grand Palace, benteng Phra Sumen, "
-        "sentra halal tepi air Asiatique The Riverfront, warisan budaya sutra Ban Krua, keseruan Siam Amazing Park, masjid "
-        "bersejarah Haroon & Ton Son Mosque, seni mural Song Wat, hingga belanja busana Pratunam Halal Street."
+        "sentra halal tepi air Asiatique The Riverfront, warisan sutra Ban Krua, keseruan Siam Amazing Park, kemegahan "
+        "Islamic Centre of Thailand, masjid bersejarah Haroon & Ton Son Mosque, hingga belanja Pratunam Halal Street."
     ),
     "Manila": (
         "Manila menyajikan napak tilas sejarah di dalam benteng Fort Santiago & Rizal Shrine, kawasan bertembok Intramuros "
-        "dengan tur sepeda bambu Bambike, kemegahan Golden Mosque di distrik Quiapo, kekayaan budaya National Museum of "
-        "Anthropology & Natural History, panorama senja Baywalk Sunset & CCP, hingga Manila Ocean Park."
+        "dengan tur sepeda bambu Bambike, kemegahan Golden Mosque di distrik Quiapo, keasrian hutan kota Arroceros, kekayaan "
+        "budaya National Museum of Anthropology & Natural History, panorama senja Baywalk Sunset, hingga Manila Ocean Park."
     ),
     "Seoul": (
         "Seoul menawarkan harmoni sempurna antara kemegahan istana utama Gyeongbokgung & Gwanghwamun Plaza, istana "
         "Changdeokgung, lorong Bukchon Hanok Village, pusat komunitas muslim Seoul Central Mosque Itaewon, keasrian Seokchon "
-        "Lake Park, hamparan ilalang Haneul Park, Seoul Forest, pemandangan N Seoul Tower, hingga surga belanja Myeongdong."
+        "Lake Park, pesona air mancur Banpo Hangang Park, ilalang Haneul Park, Seoul Forest, hingga surga belanja Myeongdong."
     ),
     "Bali": (
         "Bali adalah destinasi pulau tropis kelas dunia yang tersohor dengan keindahan Danau Beratan & Masjid Al-Hidayah "
@@ -87,14 +87,14 @@ CITY_DESCRIPTIONS = {
         "Ubud, serta pesona pantai ramah keluarga di Pantai Melasti, Pantai Pandawa, Kuta, dan Sanur."
     ),
     "Tokyo": (
-        "Tokyo menyuguhkan perpaduan menakjubkan antara keasrian taman Shinjuku Gyoen, Ueno Park, lanskap klasik Koishikawa "
-        "Korakuen dan Hamarikyu Gardens, kemegahan arsitektur islami Tokyo Camii, panorama sakura dan kuliner halal Asakusa "
-        "Sumida Park, futuristik Tokyo Skytree dan Odaiba, gemerlap Shibuya Crossing, hingga Akihabara."
+        "Tokyo menyuguhkan perpaduan menakjubkan antara keasrian taman Shinjuku Gyoen, Ueno Park, danau Inokashira Onshi "
+        "Park, lanskap klasik Koishikawa Korakuen dan Hamarikyu Gardens, kemegahan arsitektur islami Tokyo Camii, panorama "
+        "sakura dan kuliner halal Asakusa Sumida Park, futuristik Tokyo Skytree dan Odaiba, hingga Akihabara."
     ),
     "Kyoto": (
         "Kyoto merupakan jantung kebudayaan dan warisan sejarah Jepang yang kaya akan istana kuno Kyoto Imperial Palace "
-        "dan Nijo Castle, rimbunnya hutan bambu Arashiyama, keindahan Maruyama Park & Kyoto Islamic Cultural Center, rekreasi "
-        "keluarga Kyoto Railway Museum, jalur santai Kamogawa River, serta kuliner halal Nishiki Market."
+        "dan Nijo Castle, keasrian Kyoto Gyoen National Garden, rimbunnya hutan bambu Arashiyama, keindahan Maruyama Park & "
+        "Kyoto Islamic Cultural Center, rekreasi keluarga Kyoto Railway Museum, serta kuliner halal Nishiki Market."
     ),
     "Osaka": (
         "Osaka merupakan kota metropolitan terbesar di wilayah Kansai yang dikenal sebagai ibukota kuliner Jepang dengan "
@@ -103,8 +103,8 @@ CITY_DESCRIPTIONS = {
     ),
     "Dubai": (
         "Dubai merupakan pusat wisata halal dan metropolitan modern terkemuka di Asia Barat yang menyuguhkan "
-        "kemegahan arsitektur islami di Jumeirah Mosque dan Dubai Quranic Park, kemewahan The Dubai Mall, suaka margasatwa "
-        "Dubai Safari Park, rekreasi keluarga di Kite Beach, Madinat Jumeirah, Dubai Marina Walk, hingga safari gurun pasir."
+        "kemegahan arsitektur islami di Jumeirah Mosque dan Dubai Quranic Park, kemewahan The Dubai Mall, sejarah Etihad "
+        "Museum, suaka margasatwa Dubai Safari Park, rekreasi keluarga di Kite Beach, hingga safari gurun pasir."
     )
 }
 
